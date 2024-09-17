@@ -1,0 +1,62 @@
+.header { padding: 20px; }:
+This adds space inside the whole .header box. It pushes everything inside .header away from its edges.
+
+.header > * { padding: 20px; }:
+This adds space inside each item directly inside .header. It pushes each child element (like text or images) away from its own edges, but not the .header itself.
+
+When to use:
+Use .header { padding: 20px; } if you want to create space inside the header around all its content.
+Use .header > * { padding: 20px; } if you want to create space around each item inside the header, but not affect the header itself
+<img aria-hidden="false" draggable="false" loading="eager" src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c63c711260bde8048547ed58b" alt="Nasheeds ☪️🕋( No Music)" class="mMx2LUixlnN_Fu45JpFB CmkY1Ag0tJDfnFXbGgju _EShSNaBK1wUIaZQFJJQ Yn2Ei5QZn19gria6LjZj" sizes="(min-width: 1280px) 232px, 192px">
+If your viewport (browser window) width is 1200 pixels, then:
+
+100vw: Equals 1200 pixels.
+100vw - 75px: Calculates to 1200 pixels - 75 pixels = 1125 pixels.
+JS Points
+The .play() method you're using in your code is a built-in JavaScript method that belongs to the Audio object. The Audio object is part of the Web Audio API, which allows you to play audio files in the browser. It's not related to CSS or any custom function that you might have created—it's a standard function provided by the browser.
+let currentsongs = new Audio
+currentsongs.play()
+
+New Audio is what gentlemen it is an audio element of js
+var audio = new Audio('audio_file.mp3');
+audio.play();
+[1] is used to access the second part of the split result (because arrays in JavaScript are zero-indexed).
+.split("/songs/")[1]
+So, .split("/songs/")[1] gives you the portion of the string that comes after "/songs/".
+If pause is false (or not provided), the function will:
+Play the song using currentsong.play().
+Change the play button's icon to a "pause" icon (play.src = "pause.svg").
+If pause is true, it won’t play the song (it only sets the src of the currentsong, but no play() call happens).
+IMP Points when adding an event listener to seekbar
+Calculate the Click Position as a Percentage:
+
+let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
+e.offsetX gives the X-coordinate of where the user clicked on the seek bar (distance from the left edge).
+e.target.getBoundingClientRect().width gives the total width of the seek bar.
+The code divides the click position by the total width to get the click's position as a percentage of the bar (e.g., clicking halfway would give 50%).
+Move the Circle to the Clicked Position:
+
+document.querySelector(".circle").style.left = percent + "%"
+This moves the circle (the visual indicator on the progress bar) to the position where the user clicked, based on the calculated percentage.
+Update the Current Playback Time:
+
+currentsong.currentTime = ((currentsong.duration) * percent) / 100
+This updates the current playback time of the song. The percentage of the bar clicked is used to calculate the corresponding time in the song. For example, if the user clicks at 50% of the bar, the song will jump to 50% of its total duration.
+Summary:
+When the user clicks on the seek bar:
+
+The position of the click is calculated as a percentage of the bar.
+The circle (indicator) moves to that position.
+The song's playback jumps to the corresponding time, so the song plays from that new point onward.
+steps which involved in adding an event on cards 
+// Loading the playlist when a card is clicked 
+    // Steps 
+//     Select Elements: document.getElementsByClassName("card") finds all elements with the class name “card”.
+// Convert to Array: Array.from(...) converts this collection of elements into an array.
+// Add Click Event Listener: For each element in the array, an event listener is added that listens for a “click” event.
+// Fetch Songs: When an element is clicked, it triggers an asynchronous function that:
+// Calls getsongs with a path based on the clicked element’s data-folder attribute.
+// Waits for the getsongs function to return a list of songs.
+// Play Music: The first song from the list is played using the playMusic function.
+// In essence, this code sets up a click event on each “card” element, fetches a list of songs when a card is clicked, and then plays the first song from that list. 🎵
+   
