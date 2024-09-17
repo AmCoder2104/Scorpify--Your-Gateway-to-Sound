@@ -271,41 +271,42 @@ currentsong.addEventListener("timeupdate",()=>{
    }
     })
     
+    volumeInput.addEventListener("input", (e)=>{
+        if(e.target.value>0){
+            currentsong.volume = e.target.value/100
+              v.src = "img/volume.svg"
+        
+        }
+            else{
+                currentsong.volume = 0
+                v.src = "img/mute.svg"
+            }
+        
+        })
+        main();
 
     
 
 
+        
+
+
+
+
+
+
+
     
-
-
-
-
-
-
-
+        
+    
+    
+        
+    
+    
+    
+    
+    
+    
+   
 
    
-volumeInput.addEventListener("input", (e)=>{
-if(e.target.value>0){
-    currentsong.volume = e.target.value/100
-      v.src = "img/volume.svg"
-
-}
-    else{
-        currentsong.volume = 0
-        v.src = "img/mute.svg"
-    }
-
-})
-
-    
-
-
-    
-
-
-
-
-
-
-main();
