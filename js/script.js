@@ -213,41 +213,35 @@ currentsong.addEventListener("timeupdate",()=>{
     //     console.log("next",songs[index + 1])
     //     })
     next.addEventListener("click", () => {
-        // Extract the current song's name from the src
-        let currentSongName = currentsong.src.split("/").splice(-1)[0];
-        
-        // Find the index of the current song
+        let currentSongName = decodeURIComponent(currentsong.src.split("/").pop()); // Decode the song name
         let index = songs.indexOf(currentSongName);
         
-        // Check if there is a next song
-        if (index + 1 < songs.length) {
+        console.log("Current song:", currentSongName);
+        console.log("Index:", index);
+    
+        if (index !== -1 && index + 1 < songs.length) {
             playMusic(songs[index + 1]); // Play the next song
+            console.log("Next song:", songs[index + 1]);
         } else {
-            console.log("No next song available"); // Handle end of the list
+            console.log("No next song available or song index out of bounds");
         }
-    
-        console.log("Next song:", songs[index + 1]);
     });
     
-        
-    
-    // Attaching event listener to prev
     prev.addEventListener("click", () => {
-        // Extract the current song's name from the src
-        let currentSongName = currentsong.src.split("/").splice(-1)[0];
-        
-        // Find the index of the current song
+        let currentSongName = decodeURIComponent(currentsong.src.split("/").pop()); // Decode the song name
         let index = songs.indexOf(currentSongName);
-        
-        // Check if there is a previous song
-        if (index - 1 >= 0) {
-            playMusic(songs[index - 1]); // Play the previous song
-        } else {
-            console.log("No previous song available"); // Handle start of the list
-        }
     
-        console.log("Previous song:", songs[index - 1]);
+        console.log("Current song:", currentSongName);
+        console.log("Index:", index);
+    
+        if (index !== -1 && index - 1 >= 0) {
+            playMusic(songs[index - 1]); // Play the previous song
+            console.log("Previous song:", songs[index - 1]);
+        } else {
+            console.log("No previous song available or song index out of bounds");
+        }
     });
+    
     // Attching event to volume
     // You can change the volume of an audio element in JavaScript by adjusting its volume property. The volume property accepts values between 0 (muted) and 1 (full volume). You can use a range input to control the volume.
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change",(e)=>{

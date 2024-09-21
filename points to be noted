@@ -59,4 +59,36 @@ steps which involved in adding an event on cards
 // Waits for the getsongs function to return a list of songs.
 // Play Music: The first song from the list is played using the playMusic function.
 // In essence, this code sets up a click event on each “card” element, fetches a list of songs when a card is clicked, and then plays the first song from that list. 🎵
-   
+// Simulated currentsong object with a URL  
+const currentsong = {  
+    src: "http://example.com/music/song%20title.mp3"  
+};  
+
+// Using pop() to get the last segment  
+const lastSegmentPop = decodeURIComponent(currentsong.src.split("/").pop());  
+console.log("Using pop():", lastSegmentPop); // Output: "song title.mp3"  
+
+// Using splice() to get the last segment  
+const lastSegmentSplice = decodeURIComponent(currentsong.src.split("/").splice(-1)[0]);  
+console.log("Using splice:", lastSegmentSplice); // Output: "song title.mp3"  
+Explanation of Each Method
+Using pop():
+
+currentsong.src.split("/") splits the src URL into an array:
+["http:", "", "example.com", "music", "song%20title.mp3"]  
+.pop() retrieves the last element of that array, which is "song%20title.mp3".
+decodeURIComponent(...) decodes any URI component characters (like %20 to a space), resulting in "song title.mp3".
+Using splice(-1)[0]:
+
+currentsong.src.split("/") again splits the URL into the same array.
+splice(-1) removes the last element from the array but returns it wrapped in a new array:
+["song%20title.mp3"]  
+[0] accesses the first (and only) element of that new array, which is "song%20title.mp3".
+decodeURIComponent(...) is then used for decoding, resulting again in "song title.mp3".
+Output
+When you run the provided code, you should see:
+
+Using pop(): song title.mp3  
+Using splice: song title.mp3  
+Conclusion
+As you can see, both methods achieve the same final output, which is the decoded last segment of the src URL. However, using pop() is generally more straightforward and slightly more efficient for directly accessing the last element of an array than using splice(-1)[0], which involves an extra step of creating a new sub-array before accessing the element.
