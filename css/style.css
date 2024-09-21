@@ -213,6 +213,9 @@ ul li:hover {
     padding: 20px;
 
 }
+.header .button{
+    margin-top: -8px;
+}
 
 .ham {
     display: none;
