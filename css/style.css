@@ -214,7 +214,10 @@ ul li:hover {
 
 }
 .header .button{
-    margin-top: 14px;
+    margin-top: -3px;
+}
+.s1{
+    margin-top: 6px;
 }
 
 .ham {
@@ -553,6 +556,9 @@ position: relative;
 @media (max-width: 500px) {
     .card {
         width: 100%;
+    }
+    .header .button{
+        margin-top: 14px;
     }
 
     .header>* {
